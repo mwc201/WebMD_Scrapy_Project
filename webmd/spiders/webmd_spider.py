@@ -24,7 +24,6 @@ class WebmdSpider(Spider):
         drug_id = response.meta.get('drug_id')
         header = response.xpath('//*[@id="header"]/div/h1/text()').extract()[0]
         name = header.split('-')[1].strip(' ').replace(' ','+')
-        print(name,'                ','NAME      NAME     NAME')
         if 'amoxicillin' in name:
             url = 'https://www.webmd.com/drugs/drugreview-1531-amoxicillin+oral.aspx?drugid=1531&drugname=amoxicillin+oral&pageIndex=1&sortby=3&conditionFilter=-500'
         else:
