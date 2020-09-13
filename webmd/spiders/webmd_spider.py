@@ -47,7 +47,7 @@ class WebmdSpider(Spider):
     
     def parse_review_pages(self, response):          
         item = WebmdItem()
-        drug = response.xpath('//div[@class="tb_main"]/h1/text()').extract()
+        drug = response.xpath('//div[@class="tb_main"]/h1/text()').extract()[0].split('-')[-1].strip(' ')
         condition = [x.split(':')[1].strip(' ') for x in  response.xpath('//div[@class="conditionInfo"]/text()').extract()]
         effectiveness = [x.split(':')[1].strip(' ') for x in response.xpath('//*[@id="ratings_fmt"]/div/div[2]/div[1]/p[2]/span/text()').extract()] 
         ease_of_use = [x.split(':')[1].strip(' ') for x in response.xpath('//*[@id="ratings_fmt"]/div/div[2]/div[2]/p[2]/span/text()').extract()]
